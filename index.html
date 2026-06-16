@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yufeng Liu | Geospatial AI Research Portfolio</title>
+    <link rel="icon" href="data:," />
+    <meta
+      name="description"
+      content="Yufeng Liu's geospatial AI portfolio for ecological quality, public health risk mapping, disaster damage prediction, global greening synthesis, urban ecology, and tree-crown segmentation."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="scroll-meter" aria-hidden="true"><span id="scrollMeter"></span></div>
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Yufeng Liu home">
+        <span class="brand-mark">YL</span>
+        <span>
+          <strong>Yufeng Liu</strong>
+          <small>Geospatial AI Research</small>
+        </span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#top">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#publications">Publications</a>
+        <a href="#skills">Skills</a>
+        <a href="#coursework">Coursework</a>
+        <a href="#about">About</a>
+        <a href="#downloads">News</a>
+      </nav>
+      <div class="header-actions">
+        <a class="header-cta" href="./downloads/yufeng-liu-cv.pdf" download>
+          <i data-lucide="download"></i>
+          Download CV
+        </a>
+        <button class="theme-toggle" type="button" aria-label="Toggle cover glow">
+          <i data-lucide="moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Portfolio introduction">
+        <div class="design-hero-art" aria-hidden="true"></div>
+        <canvas id="atlasCanvas" aria-hidden="true"></canvas>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <h1>Yufeng Liu</h1>
+          <p class="hero-subtitle">Geospatial AI for Environmental Risk<br />and Ecological Decision-Making</p>
+          <p class="hero-copy">
+            I build reproducible workflows that turn remote-sensing records, public datasets,
+            field-related evidence, and interpretable machine learning into decisions for
+            ecology, public health, disaster risk, and urban sustainability.
+          </p>
+          <dl class="hero-metrics" aria-label="Portfolio metrics">
+            <div>
+              <dt>7</dt>
+              <dd>Research works</dd>
+            </div>
+            <div>
+              <dt>2</dt>
+              <dd>Published papers</dd>
+            </div>
+            <div>
+              <dt>IELTS 7.0</dt>
+              <dd>English proficiency</dd>
+            </div>
+            <div class="metric-tooltip" tabindex="0">
+              <dt>11</dt>
+              <dd>High-score courses</dd>
+              <span class="metric-tip" role="tooltip">
+                Digital Globe 94; GIS in Social Science 92; Field Practice 92; Remote Sensing Image Processing 89; Scientific Computations 89; GIS Design 87; Satellite Navigation 87; GIS Spatial Analysis 86; Advanced AI in Geography 86; Deep Learning and Geographic Application 86; Pedogeography 86.
+              </span>
+            </div>
+          </dl>
+          <div class="hero-actions">
+            <a class="button primary" href="#projects">
+              <i data-lucide="map"></i>
+              Explore Projects
+            </a>
+            <a class="button secondary" href="#skills">
+              <i data-lucide="sparkles"></i>
+              View Skills
+            </a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Current research identity">
+          <ul class="atlas-legend" aria-label="Research domains">
+            <li><span class="dot green"></span>Vegetation & Greening</li>
+            <li><span class="dot orange"></span>Health Risk</li>
+            <li><span class="dot blue"></span>Disaster Risk</li>
+            <li><span class="dot gold"></span>Urban Ecology</li>
+          </ul>
+          <div class="coordinate-tag">
+            <strong>1.2921&deg; S, 36.8219&deg; E</strong>
+            <span>East Africa</span>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Projects</p>
+            <h2>Research Stories from the Living Atlas</h2>
+          </div>
+          <div class="filters" role="list" aria-label="Project filters">
+            <button class="filter is-active" type="button" data-filter="all">All</button>
+            <button class="filter" type="button" data-filter="ecology">Ecology</button>
+            <button class="filter" type="button" data-filter="health">Health</button>
+            <button class="filter" type="button" data-filter="disaster">Disaster</button>
+            <button class="filter" type="button" data-filter="urban">Urban</button>
+            <button class="filter" type="button" data-filter="methods">Methods</button>
+          </div>
+        </div>
+
+        <div class="project-grid" id="projectGrid">
+          <article class="project-card feature" data-category="ecology methods" data-project="east-africa">
+            <img src="./assets/thumbs/east-africa.jpg" alt="East Africa ecological quality manuscript thumbnail" />
+            <div class="card-overlay"></div>
+            <div class="project-content">
+              <span class="project-index">01</span>
+              <p class="project-type">Component-robust attribution</p>
+              <h3>East Africa Ecological Quality</h3>
+              <p>
+                A multi-component ecological-quality framework separating spatial gradients,
+                long-term trends, and annual anomalies.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="east-africa">Details</button>
+                <a class="mini-button" href="./downloads/east-africa-ecological-quality.pdf" download>
+                  <i data-lucide="download"></i>
+                  PDF
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="health urban methods" data-project="chikungunya">
+            <img src="./assets/thumbs/chikungunya.jpg" alt="Chikungunya risk mapping paper thumbnail" />
+            <div class="card-overlay warm"></div>
+            <div class="project-content">
+              <span class="project-index">02</span>
+              <p class="project-type">Published first-author article</p>
+              <h3>Urban Chikungunya Risk Mapping</h3>
+              <p>
+                A 10 m remote-sensing framework connecting habitat suitability with urban
+                outbreak heterogeneity.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="chikungunya">Details</button>
+                <a class="mini-button" href="https://doi.org/10.3390/ijerph23060730" target="_blank" rel="noreferrer">
+                  <i data-lucide="external-link"></i>
+                  DOI: 10.3390/ijerph23060730
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="disaster methods" data-project="typhoon">
+            <img src="./assets/thumbs/typhoon.jpg" alt="Tropical cyclone building damage manuscript thumbnail" />
+            <div class="card-overlay blue"></div>
+            <div class="project-content">
+              <span class="project-index">03</span>
+              <p class="project-type">Machine-learning disaster risk</p>
+              <h3>Tropical Cyclone Building Damage</h3>
+              <p>
+                Pre-disaster screening with simplified wind-field features, accessible building
+                attributes, SHAP, and transferability checks.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="typhoon">Details</button>
+                <a class="mini-button" href="./downloads/tropical-cyclone-building-damage.docx" download>
+                  <i data-lucide="download"></i>
+                  DOCX
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="ecology methods" data-project="greening">
+            <img src="./assets/thumbs/greening-review.jpg" alt="Global greening review manuscript thumbnail" />
+            <div class="card-overlay"></div>
+            <div class="project-content">
+              <span class="project-index">04</span>
+              <p class="project-type">Bibliometric synthesis</p>
+              <h3>Global Greening Research Review</h3>
+              <p>
+                A field map of global greening research from phenomenon detection to
+                functional uncertainty and attribution.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="greening">Details</button>
+                <a class="mini-button" href="./downloads/global-greening-review.pdf" download>
+                  <i data-lucide="download"></i>
+                  PDF
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card" data-category="urban ecology" data-project="street-tree">
+            <img src="./assets/thumbs/street-tree.jpg" alt="Xiong'an street-tree optimization article thumbnail" />
+            <div class="card-overlay gold"></div>
+            <div class="project-content">
+              <span class="project-index">05</span>
+              <p class="project-type">Urban ecological decision model</p>
+              <h3>Xiong'an Street-Tree Optimization</h3>
+              <p>
+                A classified tree-species decision framework combining road gaps, constraints,
+                ecosystem services, and TOPSIS.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="street-tree">Details</button>
+                <a class="mini-button" href="./downloads/xiongan-street-tree-optimization.pdf" download>
+                  <i data-lucide="download"></i>
+                  PDF
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card wide" data-category="methods ecology" data-project="tree-crown">
+            <img src="./assets/thumbs/tree-crown-segmentation.jpg" alt="Tree crown segmentation comparison output" />
+            <div class="card-overlay purple"></div>
+            <div class="project-content">
+              <span class="project-index">06</span>
+              <p class="project-type">Computer vision pipeline</p>
+              <h3>Individual Tree Crown Segmentation</h3>
+              <p>
+                YOLOv8-seg and YOLOv11 work with ISPRS benchmark conversion, augmentation,
+                tuning, and crown-boundary post-processing.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="tree-crown">Details</button>
+                <a class="mini-button" href="./tree-crown.html">
+                  <i data-lucide="arrow-up-right"></i>
+                  Overview
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card wide" data-category="ecology methods" data-project="fengning">
+            <img src="./assets/thumbs/fengning.png" alt="Fengning County vegetation dynamics map" />
+            <div class="card-overlay blue"></div>
+            <div class="project-content">
+              <span class="project-index">07</span>
+              <p class="project-type">Published co-authored article</p>
+              <h3>Vegetation Dynamics in Fengning County</h3>
+              <p>
+                Published work on spatio-temporal vegetation dynamics and driving mechanisms
+                in an agro-pastoral transitional zone.
+              </p>
+              <div class="project-actions">
+                <button class="mini-button" type="button" data-open="fengning">Details</button>
+                <a class="mini-button" href="https://doi.org/10.3390/land15010139" target="_blank" rel="noreferrer">
+                  <i data-lucide="external-link"></i>
+                  DOI: 10.3390/land15010139
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section intro-band" id="about" aria-label="Research stance">
+        <div class="section-label">Research stance</div>
+        <div class="intro-grid">
+          <h2>Not just maps. Evidence chains that survive scrutiny.</h2>
+          <p>
+            Across projects, my contribution is to ask what a satellite or model signal can
+            responsibly mean, then test whether the answer holds when indicators, scale,
+            validation strategy, and data availability change.
+          </p>
+        </div>
+      </section>
+
+      <section class="section publication-section" id="publications">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Publication dock</p>
+            <h2>Published outputs with direct DOI routes</h2>
+          </div>
+          <p class="section-note">External DOI links open in a new tab.</p>
+        </div>
+        <div class="publication-grid">
+          <a class="publication-card" href="https://doi.org/10.3390/ijerph23060730" target="_blank" rel="noreferrer">
+            <span>First author | IJERPH</span>
+            <strong>Urban-Scale Chikungunya Risk Mapping in the Western Guangdong-Hong Kong-Macao Greater Bay Area Using Remote Sensing</strong>
+            <small>DOI: 10.3390/ijerph23060730</small>
+          </a>
+          <a class="publication-card" href="https://doi.org/10.3390/land15010139" target="_blank" rel="noreferrer">
+            <span>Co-author | Land</span>
+            <strong>Driving Mechanisms of Spatio-Temporal Vegetation Dynamics in a Typical Agro-Pastoral Transitional Zone in Fengning County, North China</strong>
+            <small>DOI: 10.3390/land15010139</small>
+          </a>
+        </div>
+      </section>
+
+      <section class="section skills-section" id="skills">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Skills tapestry</p>
+            <h2>Methods, tools, and research habits</h2>
+          </div>
+          <div class="skill-tabs" role="tablist" aria-label="Skill groups">
+            <button class="skill-tab is-active" role="tab" aria-selected="true" data-skill="geo">Geospatial</button>
+            <button class="skill-tab" role="tab" aria-selected="false" data-skill="ml">AI / ML</button>
+            <button class="skill-tab" role="tab" aria-selected="false" data-skill="writing">Scientific writing</button>
+          </div>
+        </div>
+        <div class="skills-layout">
+          <div class="skill-radar" aria-label="Skill profile chart">
+            <canvas id="skillCanvas" width="520" height="520"></canvas>
+          </div>
+          <div class="skill-copy">
+            <p id="skillLead">
+              Remote sensing, GIS, and multi-source environmental data fusion form the
+              base layer of my research.
+            </p>
+            <div class="skill-list" id="skillList"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section coursework" id="coursework">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Course evidence</p>
+            <h2>High-mark coursework supporting the portfolio</h2>
+          </div>
+        </div>
+        <div class="course-grid">
+          <span data-score="92">The Application of GIS in Social Science</span>
+          <span data-score="86">GIS Spatial Analysis</span>
+          <span data-score="89">Digital Processing of Remote Sensing Image</span>
+          <span data-score="89">Programming Languages of Scientific Computations</span>
+          <span data-score="86">Advanced AI Applications in Geography</span>
+          <span data-score="87">GIS Design and Developing</span>
+          <span data-score="86">Deep Learning and Geographic Application</span>
+          <span data-score="87">Principle and Application of Satellite Navigation</span>
+          <span data-score="86">Pedogeography</span>
+          <span data-score="92">Field Practice of Physical Geography</span>
+          <span data-score="94">Digital Globe</span>
+        </div>
+      </section>
+
+      <section class="section download-section" id="downloads">
+        <div class="download-copy">
+          <p class="eyebrow">Ready-to-open files</p>
+          <h2>Download hub</h2>
+          <p>
+            Manuscripts and portfolio files are stored locally with this site. Published
+            works keep their DOI routes so reviewers can jump straight to the journal page.
+          </p>
+        </div>
+        <div class="download-list">
+          <a href="./downloads/liu-yufeng-research-portfolio.docx" download>
+            <i data-lucide="file-text"></i>
+            English portfolio DOCX
+          </a>
+          <a href="./downloads/yufeng-liu-cv.pdf" download>
+            <i data-lucide="id-card"></i>
+            CV PDF
+          </a>
+          <a href="./downloads/east-africa-ecological-quality.pdf" download>
+            <i data-lucide="file-down"></i>
+            East Africa PDF
+          </a>
+          <a href="./downloads/tropical-cyclone-building-damage.docx" download>
+            <i data-lucide="file-down"></i>
+            Typhoon manuscript DOCX
+          </a>
+          <a href="./downloads/global-greening-review.pdf" download>
+            <i data-lucide="file-down"></i>
+            Global greening PDF
+          </a>
+          <a href="./downloads/xiongan-street-tree-optimization.pdf" download>
+            <i data-lucide="file-down"></i>
+            Street-tree PDF
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Yufeng Liu | Geographic Information Science, Beijing Normal University</p>
+      <a href="mailto:202311998046@mail.bnu.edu.cn">202311998046@mail.bnu.edu.cn</a>
+    </footer>
+
+    <dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+      <button class="dialog-close" type="button" aria-label="Close project detail">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="dialog-media">
+        <img id="dialogImage" alt="" />
+      </div>
+      <div class="dialog-body">
+        <p class="eyebrow" id="dialogType"></p>
+        <h2 id="dialogTitle"></h2>
+        <p id="dialogSummary"></p>
+        <div class="dialog-columns">
+          <div>
+            <h3>What I demonstrate</h3>
+            <ul id="dialogCapabilities"></ul>
+          </div>
+          <div>
+            <h3>Data and methods</h3>
+            <ul id="dialogMethods"></ul>
+          </div>
+        </div>
+        <div class="dialog-actions" id="dialogActions"></div>
+      </div>
+    </dialog>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

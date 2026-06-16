@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Individual Tree Crown Segmentation | Yufeng Liu</title>
+    <link rel="icon" href="data:," />
+    <meta
+      name="description"
+      content="Overview of Yufeng Liu's individual tree crown segmentation project with YOLOv8-seg and YOLOv11."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="detail-page">
+    <header class="site-header compact">
+      <a class="brand" href="./index.html#top" aria-label="Back to home">
+        <span class="brand-mark">YL</span>
+        <span>
+          <strong>Yufeng Liu</strong>
+          <small>Tree Crown Segmentation</small>
+        </span>
+      </a>
+      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+      <nav class="nav-links" aria-label="Project navigation">
+        <a href="./index.html#projects">All projects</a>
+        <a href="./index.html#skills">Skills</a>
+        <a href="./index.html#downloads">Downloads</a>
+      </nav>
+      <a class="header-cta" href="./index.html">
+        <i data-lucide="arrow-left"></i>
+        Back
+      </a>
+    </header>
+
+    <main>
+      <section class="detail-hero">
+        <div class="detail-hero-copy">
+          <p class="eyebrow">Project overview</p>
+          <h1>Individual Tree Crown Segmentation</h1>
+          <p>
+            This project contributes to an end-to-end individual tree crown instance
+            segmentation pipeline supervised by Prof. Yan Guangjian at Beijing Normal
+            University. It does not currently have a DOI or manuscript download, so this
+            page provides a concise project overview based on the CV material and local
+            segmentation outputs.
+          </p>
+        </div>
+        <img
+          class="detail-hero-image"
+          src="./assets/thumbs/tree-crown-segmentation.jpg"
+          alt="Tree crown ground truth and prediction comparison"
+        />
+      </section>
+
+      <section class="section detail-grid-section">
+        <article class="detail-panel">
+          <p class="eyebrow">Research task</p>
+          <h2>Dense crown delineation from high-resolution imagery</h2>
+          <p>
+            The project focuses on segmenting individual tree crowns in dense forest and
+            complex urban forest scenes, where adjacent crowns, shadow, crown overlap, and
+            variable canopy texture make boundary extraction difficult.
+          </p>
+        </article>
+        <article class="detail-panel">
+          <p class="eyebrow">Data basis</p>
+          <h2>ISPRS benchmark conversion and local datasets</h2>
+          <p>
+            My role includes processing benchmark data from the International Society for
+            Photogrammetry and Remote Sensing, converting annotation formats for model
+            training, and preparing train/validation imagery for repeatable experiments.
+          </p>
+        </article>
+        <article class="detail-panel">
+          <p class="eyebrow">Model route</p>
+          <h2>YOLOv8-seg and YOLOv11 segmentation workflow</h2>
+          <p>
+            I contributed to implementation around YOLOv8-seg and YOLOv11 architectures,
+            including data augmentation, hyperparameter tuning, experiment comparison, and
+            iterative inspection of dense-crown predictions.
+          </p>
+        </article>
+        <article class="detail-panel">
+          <p class="eyebrow">Post-processing</p>
+          <h2>Cleaner masks for complex forest scenes</h2>
+          <p>
+            The workflow includes post-processing steps such as noise filtering and crown
+            boundary smoothing to refine segmentation outputs and improve usability in
+            visually complex canopy conditions.
+          </p>
+        </article>
+      </section>
+
+      <section class="section process-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Pipeline</p>
+            <h2>How the project turns imagery into usable crown masks</h2>
+          </div>
+        </div>
+        <ol class="process-list">
+          <li>
+            <span>01</span>
+            <strong>Prepare benchmark imagery</strong>
+            <p>Convert ISPRS-style labels and imagery into training-ready segmentation formats.</p>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>Train segmentation models</strong>
+            <p>Run YOLOv8-seg and YOLOv11 experiments with controlled augmentation and tuning.</p>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Compare dense-crown outputs</strong>
+            <p>Inspect prediction quality against crown masks in crowded and heterogeneous scenes.</p>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>Refine boundaries</strong>
+            <p>Apply filtering and boundary smoothing so segmentation outputs are easier to use downstream.</p>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Yufeng Liu | Individual Tree Crown Segmentation Overview</p>
+      <a href="./index.html#projects">Return to the living atlas</a>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
