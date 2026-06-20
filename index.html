@@ -11,102 +11,90 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div class="scroll-meter" aria-hidden="true"><span id="scrollMeter"></span></div>
-    <header class="site-header" id="top">
-      <a class="brand" href="#top" aria-label="Yufeng Liu home">
-        <span class="brand-mark">YL</span>
-        <span>
-          <strong>Yufeng Liu</strong>
-          <small>Geospatial AI Research</small>
-        </span>
-      </a>
-      <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
-        <i data-lucide="menu"></i>
-      </button>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#top">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#publications">Publications</a>
-        <a href="#skills">Skills</a>
-        <a href="#coursework">Coursework</a>
-        <a href="#about">About</a>
-        <a href="#downloads">News</a>
-      </nav>
-      <div class="header-actions">
-        <a class="header-cta" href="./downloads/yufeng-liu-cv.pdf" download>
-          <i data-lucide="download"></i>
-          Download CV
-        </a>
-        <button class="theme-toggle" type="button" aria-label="Toggle cover glow">
-          <i data-lucide="moon"></i>
-        </button>
-      </div>
-    </header>
-
     <main>
-      <section class="hero" aria-label="Portfolio introduction">
-        <div class="design-hero-art" aria-hidden="true"></div>
-        <canvas id="atlasCanvas" aria-hidden="true"></canvas>
-        <div class="hero-shade" aria-hidden="true"></div>
+      <section class="hero" id="top" aria-label="Portfolio introduction">
+        <video
+          class="hero-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          poster="./assets/design-hero-atlas.jpg"
+          aria-hidden="true"
+        >
+          <source
+            src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        <div class="hero-chrome">
+          <header class="site-header liquid-glass">
+            <a class="brand" href="#top" aria-label="Yufeng Liu home">YUFENG</a>
+            <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false">
+              <i data-lucide="menu"></i>
+            </button>
+            <nav class="nav-links" aria-label="Primary navigation">
+              <a href="#about">Story</a>
+              <a href="#projects">Research</a>
+              <a href="#skills">Methods</a>
+              <a href="#publications">Publications</a>
+              <a href="#coursework">Coursework</a>
+            </nav>
+            <a class="header-cta" href="mailto:202311998046@mail.bnu.edu.cn">Start a Chat</a>
+          </header>
+        </div>
+
         <div class="hero-content">
-          <h1>Yufeng Liu</h1>
-          <p class="hero-subtitle">Geospatial AI for Environmental Risk<br />and Ecological Decision-Making</p>
-          <p class="hero-copy">
-            I build reproducible workflows that turn remote-sensing records, public datasets,
-            field-related evidence, and interpretable machine learning into decisions for
-            ecology, public health, disaster risk, and urban sustainability.
-          </p>
-          <dl class="hero-metrics" aria-label="Portfolio metrics">
-            <div>
-              <dt>7</dt>
-              <dd>Research works</dd>
+          <div class="hero-grid">
+            <div class="hero-copy-block">
+              <p class="hero-kicker">Yufeng Liu | Geospatial AI Research</p>
+              <h1 class="animated-heading" data-heading="Mapping tomorrow&#10;with evidence and action.">
+                Mapping tomorrow<br />with evidence and action.
+              </h1>
+              <p class="hero-copy fade-in" data-delay="800">
+                I turn imperfect Earth-observation records, public datasets, and field-linked evidence
+                into interpretable workflows for ecology, public health, disaster risk, and urban sustainability.
+              </p>
+              <div class="hero-actions fade-in" data-delay="1200">
+                <a class="button primary" href="mailto:202311998046@mail.bnu.edu.cn">Start a Chat</a>
+                <a class="button secondary liquid-glass" href="#projects">Explore Now</a>
+              </div>
             </div>
-            <div>
-              <dt>2</dt>
-              <dd>Published papers</dd>
-            </div>
-            <div>
-              <dt>IELTS 7.0</dt>
-              <dd>English proficiency</dd>
-            </div>
-            <div class="metric-tooltip" tabindex="0">
-              <dt>11</dt>
-              <dd>High-score courses</dd>
-              <span class="metric-tip" role="tooltip">
-                Digital Globe 94; GIS in Social Science 92; Field Practice 92; Remote Sensing Image Processing 89; Scientific Computations 89; GIS Design 87; Satellite Navigation 87; GIS Spatial Analysis 86; Advanced AI in Geography 86; Deep Learning and Geographic Application 86; Pedogeography 86.
-              </span>
-            </div>
-          </dl>
-          <div class="hero-actions">
-            <a class="button primary" href="#projects">
-              <i data-lucide="map"></i>
-              Explore Projects
-            </a>
-            <a class="button secondary" href="#skills">
-              <i data-lucide="sparkles"></i>
-              View Skills
-            </a>
+            <aside class="hero-tag fade-in liquid-glass" data-delay="1400" aria-label="Research domains">
+              <span>Ecology. Health. Disaster. Urban AI.</span>
+            </aside>
           </div>
         </div>
-        <aside class="hero-panel" aria-label="Current research identity">
-          <ul class="atlas-legend" aria-label="Research domains">
-            <li><span class="dot green"></span>Vegetation & Greening</li>
-            <li><span class="dot orange"></span>Health Risk</li>
-            <li><span class="dot blue"></span>Disaster Risk</li>
-            <li><span class="dot gold"></span>Urban Ecology</li>
-          </ul>
-          <div class="coordinate-tag">
-            <strong>1.2921&deg; S, 36.8219&deg; E</strong>
-            <span>East Africa</span>
-          </div>
-        </aside>
+      </section>
+
+      <section class="signal-strip" aria-label="Portfolio signals">
+        <div class="signal-item">
+          <strong>7</strong>
+          <span>Research works</span>
+        </div>
+        <div class="signal-item">
+          <strong>2</strong>
+          <span>Published papers</span>
+        </div>
+        <div class="signal-item">
+          <strong>IELTS 7.0</strong>
+          <span>English proficiency</span>
+        </div>
+        <div class="signal-item signal-tooltip" tabindex="0">
+          <strong>11</strong>
+          <span>High-score GIS / RS courses</span>
+          <em>
+            Digital Globe 94; GIS in Social Science 92; Field Practice 92; Remote Sensing Image Processing 89;
+            Scientific Computations 89; GIS Design 87; Satellite Navigation 87; GIS Spatial Analysis 86;
+            Advanced AI in Geography 86; Deep Learning and Geographic Application 86; Pedogeography 86.
+          </em>
+        </div>
       </section>
 
       <section class="section" id="projects">

@@ -239,6 +239,7 @@ const state = {
 
 document.addEventListener("DOMContentLoaded", () => {
   createIcons();
+  initHeroAnimations();
   initNavigation();
   initScrollMeter();
   initFilters();
@@ -253,6 +254,42 @@ function createIcons() {
   if (window.lucide) {
     window.lucide.createIcons();
   }
+}
+
+function initHeroAnimations() {
+  const heading = document.querySelector(".animated-heading");
+  if (heading) {
+    const text = heading.getAttribute("data-heading") || heading.textContent || "";
+    const lines = text.split("\n");
+    const charDelay = 30;
+    let offset = 0;
+    heading.textContent = "";
+
+    lines.forEach((line, lineIndex) => {
+      const lineWrap = document.createElement("span");
+      lineWrap.className = "animated-line";
+
+      [...line].forEach((char, charIndex) => {
+        const span = document.createElement("span");
+        span.className = "animated-char";
+        span.textContent = char === " " ? "\u00A0" : char;
+        const delay = 200 + offset + charIndex * charDelay;
+        window.setTimeout(() => span.classList.add("char-visible"), delay);
+        lineWrap.appendChild(span);
+      });
+
+      heading.appendChild(lineWrap);
+      if (lineIndex < lines.length - 1) heading.appendChild(document.createElement("br"));
+      offset += line.length * charDelay;
+    });
+
+    window.setTimeout(() => heading.classList.add("is-visible"), 40);
+  }
+
+  document.querySelectorAll(".fade-in").forEach((element) => {
+    const delay = Number(element.getAttribute("data-delay") || 0);
+    window.setTimeout(() => element.classList.add("is-visible"), delay);
+  });
 }
 
 function initNavigation() {
@@ -422,48 +459,57 @@ function renderDialogMedia(media, project) {
     dot.className = "carousel-dot";
     dot.type = "button";
     dot.setAttribute("aria-label", `Show figure ${index + 1}`);
-    dot.addEventListener("click", () => show(index));
+    dot.addEventListener("click", () => {
+      show(index);
+      start();
+    });
     dots?.appendChild(dot);
   });
 
   const dotButtons = carousel.querySelectorAll(".carousel-dot");
   const progressBar = controls.querySelector(".carousel-progress i");
   let current = 0;
-  let frame = 0;
-  let lastChange = performance.now();
+  let timer = 0;
+  let progressTimer = 0;
+  let progressStarted = performance.now();
   const interval = 3200;
 
   function show(next) {
     current = (next + slides.length) % slides.length;
     track.style.transform = `translateX(${-current * 100}%)`;
-    lastChange = performance.now();
+    progressStarted = performance.now();
+    if (progressBar) {
+      progressBar.style.transform = "scaleX(0)";
+    }
     dotButtons.forEach((dot, index) => {
       dot.classList.toggle("is-active", index === current);
       dot.setAttribute("aria-current", index === current ? "true" : "false");
     });
   }
 
-  function tick(now) {
-    const elapsed = now - lastChange;
+  function updateProgress() {
+    const elapsed = performance.now() - progressStarted;
     const progress = Math.max(0, Math.min(1, elapsed / interval));
     if (progressBar) {
       progressBar.style.transform = `scaleX(${progress})`;
     }
-    if (elapsed >= interval) {
-      show(current + 1);
-    }
-    frame = window.requestAnimationFrame(tick);
   }
 
   function start() {
     stop();
-    frame = window.requestAnimationFrame(tick);
+    progressStarted = performance.now();
+    timer = window.setInterval(() => show(current + 1), interval);
+    progressTimer = window.setInterval(updateProgress, 80);
   }
 
   function stop() {
-    if (frame) {
-      window.cancelAnimationFrame(frame);
-      frame = 0;
+    if (timer) {
+      window.clearInterval(timer);
+      timer = 0;
+    }
+    if (progressTimer) {
+      window.clearInterval(progressTimer);
+      progressTimer = 0;
     }
   }
 
@@ -471,6 +517,7 @@ function renderDialogMedia(media, project) {
     const button = event.target instanceof Element ? event.target.closest("[data-carousel]") : null;
     if (!(button instanceof HTMLButtonElement)) return;
     show(current + (button.dataset.carousel === "next" ? 1 : -1));
+    start();
   });
 
   show(0);
@@ -1222,7 +1269,9 @@ function drawSkillCanvas(canvas, values) {
   if (!ctx) return;
 
   const dpr = Math.max(1, window.devicePixelRatio || 1);
-  const displaySize = Math.min(canvas.parentElement?.clientWidth || 430, 430);
+  const parentWidth = canvas.parentElement?.getBoundingClientRect().width || window.innerWidth - 48;
+  const viewportWidth = window.innerWidth - 48;
+  const displaySize = Math.max(260, Math.min(parentWidth, viewportWidth, 430));
   canvas.width = displaySize * dpr;
   canvas.height = displaySize * dpr;
   canvas.style.width = `${displaySize}px`;
