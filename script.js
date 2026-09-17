@@ -1,31 +1,143 @@
 const projectData = {
-  "east-africa": {
-    type: "Component-robust attribution",
-    title: "East Africa Ecological Quality",
-    image: "./assets/thumbs/east-africa.jpg",
+  "east-africa-native-grid": {
+    type: "Manuscript in preparation for Ecological Indicators",
+    title: "Native-Grid Monitoring of Vegetation-Production Change in East African Open Ecosystems",
+    image: "./assets/thumbs/east-africa-native-grid.jpg",
     slides: [
-      "./assets/figures/east-africa/slide-01.jpg",
-      "./assets/figures/east-africa/slide-02.jpg",
-      "./assets/figures/east-africa/slide-03.jpg",
-      "./assets/figures/east-africa/slide-04.jpg",
-      "./assets/figures/east-africa/slide-05.jpg"
+      "./assets/figures/east-africa-native-grid/slide-01.jpg",
+      "./assets/figures/east-africa-native-grid/slide-02.jpg",
+      "./assets/figures/east-africa-native-grid/slide-03.jpg",
+      "./assets/figures/east-africa-native-grid/slide-04.jpg"
     ],
     summary:
-      "A vegetation-based ecological quality framework for East Africa that combines cover, canopy structure, and ecosystem function, then tests whether greening interpretations survive component, weighting, threshold, and validation choices.",
+      "A native-grid monitoring framework for East African open ecosystems that combines vegetation and production signals while testing how much inferred change depends on product choice, support, and trend assumptions.",
     capabilities: [
-      "Designed a multi-component ecological quality index.",
-      "Separated persistent spatial gradients from long-term temporal dynamics.",
-      "Used interpretable XGBoost-SHAP models with spatial block validation.",
-      "Framed climate-linked vegetation change with careful evidence boundaries."
+      "Built a quality-screened, locally persistent open-vegetation monitoring domain.",
+      "Separated robust regional screening from claims of recovery or causal drivers.",
+      "Stress-tested products, common support, trend endpoints, and component formulation.",
+      "Connected satellite screening to spatially validated environmental context and field verification."
     ],
     methods: [
-      "MODIS FVC, LAI, and GPP from 2001 to 2020.",
-      "Theil-Sen slope, Mann-Kendall, and FDR-controlled trend detection.",
-      "XGBoost-SHAP for spatial, trend, and anomaly association models.",
-      "Sensitivity checks for components, normalization, masks, and autocorrelation."
+      "MODIS NDVI, LAI, and GPP from 2001 to 2020, with alternative GPP sensitivity checks.",
+      "Rolling land-cover persistence and a common 1 km analysis support.",
+      "Theil-Sen, Mann-Kendall, and FDR-controlled trend screening.",
+      "Spatially blocked nonlinear modelling and conditional empirical-Bayes associations."
     ],
     actions: [
-      { label: "Download PDF", href: "./downloads/east-africa-ecological-quality.pdf", download: true }
+      { label: "Download manuscript DOCX", href: "./downloads/east-africa-native-grid-monitoring.docx", download: true }
+    ]
+  },
+  "east-africa-drought": {
+    type: "Drought recovery and competing risks",
+    title: "Pre-onset Satellite Condition Predicts Drought Recovery After Coherent Multi-Product Loss Across East African Open Ecosystems",
+    image: "./assets/thumbs/east-africa-drought.jpg",
+    slides: [
+      "./assets/figures/east-africa-drought/slide-01.jpg",
+      "./assets/figures/east-africa-drought/slide-02.jpg",
+      "./assets/figures/east-africa-drought/slide-03.jpg",
+      "./assets/figures/east-africa-drought/slide-04.jpg"
+    ],
+    summary:
+      "An event-scale analysis of how antecedent satellite condition shapes recovery, recurrent drought, and incomplete recovery after coherent multi-product losses across East African open ecosystems.",
+    capabilities: [
+      "Distinguished ecological recovery from recurrent drought and incomplete recovery.",
+      "Linked pre-event satellite condition to post-event recovery trajectories.",
+      "Tested whether relationships remain stable outside nearby spatial autocorrelation.",
+      "Framed recovery as an empirical time-to-event question rather than a single trend."
+    ],
+    methods: [
+      "FVC, LAI, MOD17 GPP, PML GPP, and SPI-3 drought-event screening.",
+      "Multi-product agreement rules to define coherent loss events.",
+      "Competing-risk Aalen-Johansen estimation and survival modelling.",
+      "Spatial buffer validation to test geographic transferability."
+    ],
+    actions: [
+      { label: "Download manuscript DOCX", href: "./downloads/east-africa-drought-recovery.docx", download: true }
+    ]
+  },
+  "yarlung-tsangpo": {
+    type: "Manuscript in preparation for Journal of Cleaner Production",
+    title: "Scale-Aware Hydrological Allocation for Ecosystem-Service Flow in the Yarlung Tsangpo Basin",
+    image: "./assets/thumbs/yarlung-tsangpo.jpg",
+    slides: [
+      "./assets/figures/yarlung-tsangpo/slide-01.jpg",
+      "./assets/figures/yarlung-tsangpo/slide-02.jpg",
+      "./assets/figures/yarlung-tsangpo/slide-03.jpg",
+      "./assets/figures/yarlung-tsangpo/slide-04.jpg"
+    ],
+    summary:
+      "A scale-aware ecosystem-service workflow that traces water-service paths through nested basins, contrasts supply with socioeconomic demand, and uses XGBoost-based attribution to explain mismatch patterns.",
+    capabilities: [
+      "Translated ecosystem-service mismatch into a directional service-flow problem.",
+      "Linked biophysical supply and downstream demand across nested basin scales.",
+      "Used XGBoost to make environmental attribution inspectable rather than opaque.",
+      "Designed a basin-management framing that keeps physical routing and decision scale aligned."
+    ],
+    methods: [
+      "Annual water-yield estimation and population- and economy-linked demand indicators.",
+      "Downstream allocation of potential supply through nested basin levels.",
+      "Service-flow pathway mapping and multi-scale mismatch diagnosis.",
+      "XGBoost-based environmental attribution with spatially aware validation."
+    ],
+    actions: [
+      { label: "Download manuscript DOCX", href: "./downloads/yarlung-tsangpo-service-flow.docx", download: true }
+    ]
+  },
+  "hong-kong-lulc": {
+    type: "Manuscript in preparation for ISPRS Journal of Photogrammetry and Remote Sensing",
+    title: "Urban-Context Residual Learning for Multimodal Land Use/Land Cover Mapping",
+    image: "./assets/thumbs/hong-kong-lulc.jpg",
+    slides: [
+      "./assets/figures/hong-kong-lulc/slide-01.jpg",
+      "./assets/figures/hong-kong-lulc/slide-02.jpg",
+      "./assets/figures/hong-kong-lulc/slide-03.jpg",
+      "./assets/figures/hong-kong-lulc/slide-04.jpg"
+    ],
+    summary:
+      "A multimodal land use/land cover model for high-density mountainous coastal cities, where a lightweight FCNN combines Earth observation with urban context and text-semantic evidence.",
+    capabilities: [
+      "Designed late urban-context residual learning that preserves the remote-sensing backbone.",
+      "Turned heterogeneous urban signals into a structured multimodal fusion problem.",
+      "Handled label hierarchy and mixed land-use ambiguity without hiding uncertainty.",
+      "Tested geographical robustness under spatially separated evaluation."
+    ],
+    methods: [
+      "Sentinel-1, Sentinel-2, VIIRS, terrain, building, road, and POI information.",
+      "Text embeddings for semantic urban context and functional place information.",
+      "FCNN with late fusion and an urban-context residual branch.",
+      "Spatial cross-validation, hierarchical labels, and resolution-ablation tests."
+    ],
+    actions: [
+      { label: "Download manuscript DOCX", href: "./downloads/urban-context-multimodal-lulc.docx", download: true },
+      { label: "Open target journal", href: "https://www.sciencedirect.com/journal/isprs-journal-of-photogrammetry-and-remote-sensing", external: true }
+    ]
+  },
+  "arctic-rts": {
+    type: "Arctic multimodal GeoAI",
+    title: "RGB-Anchored Multimodal Instance Segmentation of Retrogressive Thaw Slumps With Spectral-Terrain Evidence and Replay Refinement",
+    image: "./assets/thumbs/arctic-rts.jpg",
+    slides: [
+      "./assets/figures/arctic-rts/slide-01.jpg",
+      "./assets/figures/arctic-rts/slide-02.jpg",
+      "./assets/figures/arctic-rts/slide-03.jpg",
+      "./assets/figures/arctic-rts/slide-04.jpg"
+    ],
+    summary:
+      "An Arctic retrogressive thaw-slump segmentation workflow that uses RGB as a semantic anchor, spectral-terrain evidence as auxiliary context, and replay refinement for strong boundaries under limited labels.",
+    capabilities: [
+      "Framed multimodal fusion around semantic stability instead of indiscriminate feature stacking.",
+      "Designed a reproducible instance-segmentation workflow for label-limited terrain mapping.",
+      "Diagnosed the contribution of spectral and terrain evidence through controlled ablations.",
+      "Focused evaluation on object masks and boundaries that matter for geomorphic interpretation."
+    ],
+    methods: [
+      "RGB-anchored ResNet-50-FPN instance segmentation architecture.",
+      "NIR, NDVI, NDWI, red-edge, shaded relief, slope, and terrain-evidence channels.",
+      "Multiscale auxiliary features and replay-based refinement.",
+      "Five-fold out-of-fold evaluation with COCO mask metrics and boundary diagnostics."
+    ],
+    actions: [
+      { label: "Download manuscript DOCX", href: "./downloads/arctic-rts-multimodal-segmentation.docx", download: true }
     ]
   },
   chikungunya: {
@@ -59,7 +171,7 @@ const projectData = {
     ]
   },
   typhoon: {
-    type: "Machine-learning disaster risk",
+    type: "Submitted to International Remote Sensing and Geographic Information Conference",
     title: "Tropical Cyclone Building Damage",
     image: "./assets/thumbs/typhoon.jpg",
     slides: [
@@ -87,35 +199,6 @@ const projectData = {
       { label: "Download DOCX", href: "./downloads/tropical-cyclone-building-damage.docx", download: true }
     ]
   },
-  greening: {
-    type: "Bibliometric synthesis",
-    title: "Global Greening Research Review",
-    image: "./assets/thumbs/greening-review.jpg",
-    slides: [
-      "./assets/figures/greening/slide-01.jpg",
-      "./assets/figures/greening/slide-02.jpg",
-      "./assets/figures/greening/slide-03.jpg",
-      "./assets/figures/greening/slide-04.jpg",
-      "./assets/figures/greening/slide-05.jpg"
-    ],
-    summary:
-      "A remote-sensing review that maps how global greening research evolved from greenness detection toward attribution, functional uncertainty, carbon-water links, and resilience questions.",
-    capabilities: [
-      "Organized a large literature by argument rather than by paper list.",
-      "Connected bibliometric structure with remote-sensing uncertainty.",
-      "Explained why greenness is not automatically ecological recovery.",
-      "Built a field-level map for future research questions."
-    ],
-    methods: [
-      "Web of Science Core Collection records from 1980 to 2025.",
-      "VOSviewer and CiteSpace for keyword, co-citation, and thematic evolution.",
-      "Supplementary MODIS-era NDVI, LAI, and GPP trend illustrations.",
-      "Synthesis of indicator, sensor, scale, masking, and attribution uncertainty."
-    ],
-    actions: [
-      { label: "Download PDF", href: "./downloads/global-greening-review.pdf", download: true }
-    ]
-  },
   "street-tree": {
     type: "Urban ecological decision model",
     title: "Xiong'an Street-Tree Optimization",
@@ -130,7 +213,7 @@ const projectData = {
       "A decision framework for selecting street-tree species in Xiong'an New Area by linking road ecological gaps, environmental constraints, land-use scenarios, and multi-objective ecosystem services.",
     capabilities: [
       "Translated multi-source environmental evidence into planning support.",
-      "Balanced cooling, carbon, pollution mitigation, stormwater, and greening needs.",
+      "Balanced cooling, carbon, pollution mitigation, stormwater, and urban vegetation needs.",
       "Used multi-criteria decision analysis for actionable urban ecology.",
       "Designed a categorized configuration strategy instead of a single-species answer."
     ],
