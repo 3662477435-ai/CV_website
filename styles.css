@@ -43,6 +43,16 @@ body.no-scroll {
   overflow: hidden;
 }
 
+body.no-scroll::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(9px);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -195,7 +205,6 @@ img {
 .button,
 .mini-button,
 .filter,
-.skill-tab,
 .download-list a,
 .dialog-actions a {
   display: inline-flex;
@@ -1056,15 +1065,13 @@ h2 {
   margin-bottom: 0;
 }
 
-.filters,
-.skill-tabs {
+.filters {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.filter,
-.skill-tab {
+.filter {
   min-height: 38px;
   padding: 0 14px;
   color: var(--muted);
@@ -1072,8 +1079,7 @@ h2 {
   font-weight: 700;
 }
 
-.filter.is-active,
-.skill-tab.is-active {
+.filter.is-active {
   border-color: rgba(115, 209, 132, 0.68);
   color: var(--text);
   background: rgba(115, 209, 132, 0.14);
@@ -1097,6 +1103,7 @@ h2 {
   background: var(--panel);
   box-shadow: 0 14px 48px rgba(0, 0, 0, 0.24);
   isolation: isolate;
+  cursor: pointer;
   transition: transform 180ms ease, border-color 180ms ease;
 }
 
@@ -1274,73 +1281,6 @@ h2 {
   font-weight: 700;
 }
 
-.skills-layout {
-  display: grid;
-  grid-template-columns: minmax(280px, 0.88fr) minmax(320px, 1fr);
-  gap: clamp(24px, 5vw, 70px);
-  align-items: center;
-}
-
-.skill-radar {
-  display: grid;
-  place-items: center;
-  min-height: 420px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background:
-    linear-gradient(135deg, rgba(98, 216, 230, 0.09), rgba(115, 209, 132, 0.06)),
-    rgba(255, 255, 255, 0.025);
-}
-
-#skillCanvas {
-  width: min(100%, 430px);
-  height: auto;
-}
-
-.skill-copy {
-  padding: 4px 0;
-}
-
-.skill-copy > p {
-  color: var(--soft);
-  font-size: 20px;
-  line-height: 1.65;
-}
-
-.skill-list {
-  display: grid;
-  gap: 14px;
-  margin-top: 26px;
-}
-
-.skill-item {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.8fr) 1fr;
-  gap: 18px;
-  align-items: center;
-}
-
-.skill-item span {
-  color: var(--text);
-  font-weight: 800;
-}
-
-.skill-bar {
-  height: 9px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-}
-
-.skill-bar i {
-  display: block;
-  width: var(--level);
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--green), var(--cyan), var(--gold));
-}
-
 .course-grid {
   display: flex;
   flex-wrap: wrap;
@@ -1453,8 +1393,14 @@ h2 {
 }
 
 .project-dialog[open] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 91;
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
+  margin: 0;
+  transform: translate(-50%, -50%);
 }
 
 .dialog-close {
@@ -1816,7 +1762,6 @@ h2 {
     grid-column: span 6;
   }
 
-  .skills-layout,
   .download-section,
   .detail-hero {
     grid-template-columns: 1fr;
@@ -1876,8 +1821,7 @@ h2 {
     display: block;
   }
 
-  .filters,
-  .skill-tabs {
+  .filters {
     margin-top: 20px;
   }
 
@@ -1892,11 +1836,6 @@ h2 {
   .download-list,
   .dialog-columns {
     grid-template-columns: 1fr;
-  }
-
-  .skill-item {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .project-dialog[open] {
@@ -2022,17 +1961,8 @@ h2 {
     font-size: 15px;
   }
 
-  .hero-copy-block,
-  .skills-layout,
-  .skill-radar,
-  .skill-copy,
-  .skill-list,
-  .skill-item {
+  .hero-copy-block {
     min-width: 0;
-    max-width: 100%;
-  }
-
-  #skillCanvas {
     max-width: 100%;
   }
 

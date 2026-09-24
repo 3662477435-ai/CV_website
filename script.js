@@ -279,44 +279,7 @@ const projectData = {
   }
 };
 
-const skillGroups = {
-  geo: {
-    lead:
-      "Remote sensing, GIS, and multi-source environmental data fusion form the base layer of my research.",
-    values: [
-      ["Google Earth Engine", 94],
-      ["ArcGIS / QGIS / ENVI", 88],
-      ["Remote-sensing image processing", 90],
-      ["Spatial statistics and GIS analysis", 86],
-      ["Multi-source environmental fusion", 92]
-    ]
-  },
-  ml: {
-    lead:
-      "My AI work focuses on practical, interpretable models for geographic and environmental evidence.",
-    values: [
-      ["Random Forest and XGBoost", 92],
-      ["SHAP interpretation", 88],
-      ["Ensemble and benchmark ML", 84],
-      ["YOLO segmentation pipelines", 82],
-      ["Python scientific computing", 90]
-    ]
-  },
-  writing: {
-    lead:
-      "I use writing as part of the research method: claims stay close to evidence and boundaries are explicit.",
-    values: [
-      ["Scientific argument design", 90],
-      ["Manuscript drafting", 88],
-      ["Critical literature synthesis", 92],
-      ["Method description", 86],
-      ["Cross-disciplinary framing", 87]
-    ]
-  }
-};
-
 const state = {
-  currentSkill: "geo",
   atlasMouse: { x: 0, y: 0 }
 };
 
@@ -327,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollMeter();
   initFilters();
   initProjectDialog();
-  initSkills();
   initThemeToggle();
   initSectionBackdrops();
   initAtlasScene();
@@ -429,7 +391,7 @@ function initFilters() {
 
 function initProjectDialog() {
   const dialog = document.getElementById("projectDialog");
-  if (!(dialog instanceof HTMLDialogElement)) return;
+  if (!dialog) return;
 
   const close = dialog.querySelector(".dialog-close");
   const media = dialog.querySelector(".dialog-media");
@@ -439,53 +401,88 @@ function initProjectDialog() {
   const capabilities = document.getElementById("dialogCapabilities");
   const methods = document.getElementById("dialogMethods");
   const actions = document.getElementById("dialogActions");
+  if (!media || !type || !title || !summary || !capabilities || !methods || !actions) return;
+
   let stopCarousel = () => {};
 
+  const clearDialogState = () => {
+    stopCarousel();
+    stopCarousel = () => {};
+    document.body.classList.remove("no-scroll");
+  };
+
+  const closeDialog = () => {
+    if (typeof dialog.close === "function" && dialog.hasAttribute("open")) {
+      dialog.close();
+      return;
+    }
+    dialog.removeAttribute("open");
+    clearDialogState();
+  };
+
+  const openDialog = () => {
+    if (typeof dialog.showModal === "function") {
+      try {
+        if (!dialog.hasAttribute("open")) dialog.showModal();
+      } catch {
+        dialog.setAttribute("open", "");
+      }
+    } else {
+      dialog.setAttribute("open", "");
+    }
+    document.body.classList.add("no-scroll");
+  };
+
+  const openProject = (key) => {
+    const project = projectData[key];
+    if (!project) return;
+
+    stopCarousel();
+    stopCarousel = renderDialogMedia(media, project);
+    type.textContent = project.type;
+    title.textContent = project.title;
+    summary.textContent = project.summary;
+    fillList(capabilities, project.capabilities);
+    fillList(methods, project.methods);
+    actions.innerHTML = "";
+
+    project.actions.forEach((action) => {
+      const link = document.createElement("a");
+      link.href = action.href;
+      link.textContent = action.label;
+      if (action.external) {
+        link.target = "_blank";
+        link.rel = "noreferrer";
+      }
+      if (action.download) link.setAttribute("download", "");
+      actions.appendChild(link);
+    });
+
+    openDialog();
+  };
+
   document.querySelectorAll("[data-open]").forEach((trigger) => {
-    trigger.addEventListener("click", () => {
-      const key = trigger.getAttribute("data-open");
-      const project = key ? projectData[key] : null;
-      if (!project || !media) return;
+    trigger.addEventListener("click", () => openProject(trigger.getAttribute("data-open") || ""));
+  });
 
-      stopCarousel();
-      stopCarousel = renderDialogMedia(media, project);
-      type.textContent = project.type;
-      title.textContent = project.title;
-      summary.textContent = project.summary;
-      fillList(capabilities, project.capabilities);
-      fillList(methods, project.methods);
-      actions.innerHTML = "";
-
-      project.actions.forEach((action) => {
-        const link = document.createElement("a");
-        link.href = action.href;
-        link.textContent = action.label;
-        if (action.external) {
-          link.target = "_blank";
-          link.rel = "noreferrer";
-        }
-        if (action.download) {
-          link.setAttribute("download", "");
-        }
-        actions.appendChild(link);
-      });
-
-      dialog.showModal();
-      document.body.classList.add("no-scroll");
+  document.querySelectorAll(".project-card[data-project]").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      const target = event.target;
+      if (target instanceof Element && target.closest("a, button")) return;
+      openProject(card.getAttribute("data-project") || "");
     });
   });
 
   close?.addEventListener("click", () => {
-    dialog.close();
+    closeDialog();
   });
 
   dialog.addEventListener("click", (event) => {
-    if (event.target === dialog) dialog.close();
+    if (event.target === dialog) closeDialog();
   });
 
   dialog.addEventListener("close", () => {
-    stopCarousel();
-    document.body.classList.remove("no-scroll");
+    clearDialogState();
   });
 }
 
@@ -616,49 +613,6 @@ function fillList(list, values) {
     item.textContent = value;
     list.appendChild(item);
   });
-}
-
-function initSkills() {
-  const tabs = document.querySelectorAll(".skill-tab");
-  const lead = document.getElementById("skillLead");
-  const list = document.getElementById("skillList");
-  const canvas = document.getElementById("skillCanvas");
-  if (!tabs.length || !lead || !list || !(canvas instanceof HTMLCanvasElement)) return;
-
-  const render = (key) => {
-    state.currentSkill = key;
-    const group = skillGroups[key];
-    lead.textContent = group.lead;
-    list.innerHTML = "";
-
-    group.values.forEach(([label, level]) => {
-      const item = document.createElement("div");
-      item.className = "skill-item";
-      item.innerHTML = `
-        <span>${label}</span>
-        <div class="skill-bar" aria-label="${label}: ${level} percent">
-          <i style="--level:${level}%"></i>
-        </div>
-      `;
-      list.appendChild(item);
-    });
-
-    drawSkillCanvas(canvas, group.values);
-  };
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      const key = tab.dataset.skill || "geo";
-      tabs.forEach((item) => {
-        item.classList.toggle("is-active", item === tab);
-        item.setAttribute("aria-selected", String(item === tab));
-      });
-      render(key);
-    });
-  });
-
-  render(state.currentSkill);
-  window.addEventListener("resize", () => render(state.currentSkill));
 }
 
 function initThemeToggle() {
@@ -1345,91 +1299,6 @@ function roundRect(ctx, x, y, width, height, radius) {
   ctx.arcTo(x, y + height, x, y, radius);
   ctx.arcTo(x, y, x + width, y, radius);
   ctx.closePath();
-}
-
-function drawSkillCanvas(canvas, values) {
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  const dpr = Math.max(1, window.devicePixelRatio || 1);
-  const parentWidth = canvas.parentElement?.getBoundingClientRect().width || window.innerWidth - 48;
-  const viewportWidth = window.innerWidth - 48;
-  const displaySize = Math.max(260, Math.min(parentWidth, viewportWidth, 430));
-  canvas.width = displaySize * dpr;
-  canvas.height = displaySize * dpr;
-  canvas.style.width = `${displaySize}px`;
-  canvas.style.height = `${displaySize}px`;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, displaySize, displaySize);
-
-  const center = displaySize / 2;
-  const radius = displaySize * 0.34;
-  const count = values.length;
-  ctx.lineWidth = 1;
-  ctx.font = "600 11px Inter, sans-serif";
-
-  for (let ring = 1; ring <= 4; ring += 1) {
-    const r = (radius * ring) / 4;
-    ctx.beginPath();
-    for (let i = 0; i < count; i += 1) {
-      const a = -Math.PI / 2 + (i * Math.PI * 2) / count;
-      const x = center + Math.cos(a) * r;
-      const y = center + Math.sin(a) * r;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.closePath();
-    ctx.strokeStyle = "rgba(216, 245, 232, 0.13)";
-    ctx.stroke();
-  }
-
-  values.forEach(([, level], i) => {
-    const a = -Math.PI / 2 + (i * Math.PI * 2) / count;
-    const outerX = center + Math.cos(a) * radius;
-    const outerY = center + Math.sin(a) * radius;
-    ctx.beginPath();
-    ctx.moveTo(center, center);
-    ctx.lineTo(outerX, outerY);
-    ctx.strokeStyle = "rgba(216, 245, 232, 0.14)";
-    ctx.stroke();
-
-    const labelX = center + Math.cos(a) * (radius + 44);
-    const labelY = center + Math.sin(a) * (radius + 44);
-    ctx.fillStyle = "rgba(215, 232, 226, 0.78)";
-    ctx.textAlign = labelX < center - 8 ? "right" : labelX > center + 8 ? "left" : "center";
-    ctx.fillText(`${level}%`, labelX, labelY);
-  });
-
-  ctx.beginPath();
-  values.forEach(([, level], i) => {
-    const a = -Math.PI / 2 + (i * Math.PI * 2) / count;
-    const r = radius * (level / 100);
-    const x = center + Math.cos(a) * r;
-    const y = center + Math.sin(a) * r;
-    if (i === 0) ctx.moveTo(x, y);
-    else ctx.lineTo(x, y);
-  });
-  ctx.closePath();
-  const fill = ctx.createLinearGradient(center - radius, center - radius, center + radius, center + radius);
-  fill.addColorStop(0, "rgba(115, 209, 132, 0.38)");
-  fill.addColorStop(0.58, "rgba(98, 216, 230, 0.28)");
-  fill.addColorStop(1, "rgba(216, 181, 107, 0.22)");
-  ctx.fillStyle = fill;
-  ctx.fill();
-  ctx.strokeStyle = "rgba(115, 209, 132, 0.82)";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-
-  values.forEach(([, level], i) => {
-    const a = -Math.PI / 2 + (i * Math.PI * 2) / count;
-    const r = radius * (level / 100);
-    const x = center + Math.cos(a) * r;
-    const y = center + Math.sin(a) * r;
-    ctx.beginPath();
-    ctx.arc(x, y, 4.2, 0, Math.PI * 2);
-    ctx.fillStyle = "#73d184";
-    ctx.fill();
-  });
 }
 
 async function initAtlasScene() {
